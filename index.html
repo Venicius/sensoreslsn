@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Meta tags Obrigatórias -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+  <link rel="stylesheet" href="_css/style.css">
+  <title>Sensores - LSN</title>
+</head>
+
+<body>
+  <nav id="navbar-example2" class="navbar navbar-dark bg-dark  justify-content-md-center">
+    <a class="navbar-brand center" href="index.html">Sensores</a>
+    <ul class="nav nav-pills">
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+          aria-expanded="false">Local</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#4b">Central de Laboratórios - 4B</a>
+          <a class="dropdown-item" href="#lsn">LSN - 13</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <!--  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<div class="navbar-collapse justify-content-md-center">
+    <a class="navbar-brand" href="index.html">Sensores - LSN</a>
+</div>
+    
+</nav> -->
+  <br>
+  <div class="container-fluid centro" data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+    <div class="row justify-content-md-center">
+
+      <h1 id="4b">
+        Central de Laboratórios - 4B</h1>
+    </div>
+    <br>
+
+    <div class="row justify-content-md-center">
+      <br>
+      <!--Temperatura-->
+      <div class="card col-sm-12 col-md-5 col-lg-5 col-xl-5 shadow-sm p-3 mb-5 bg-white rounded ">
+        <div class="card-body">
+          <header>
+            <h1><span id="currentTemp">--</span></h1>
+          </header>
+          <h4><span>Temperatura em:</span>
+            <p><small id="tempData" class="text-muted">--</small>
+            </p>
+          </h4>
+          <form class="form">
+            <div class="form-group" id="sandbox-container">
+              <input type="text" class="form-control form-control-sm" placeholder="DD/MM/AAAA"
+                id="inputDataTemperatura">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"
+              onclick='criaGrafTemperaturaPorData("DadosSensores2")'> Carregar histórico</button>
+          </form>
+
+        </div>
+      </div>
+      <!--card-->
+
+
+      <!-- Modal -->
+
+      <div class="modal fade bd-example-modal-xl" id="modal" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Histórico</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <canvas id="line-chart"></canvas>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Umidade-->
+      <div class="card col-sm-12 col-md-5 col-lg-5 col-xl-5 shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <header>
+            <h1><span id="currentUmid">--</span></h1>
+          </header>
+          <h4><span>Umidade em:</span>
+            <p><small id="umidData" class="text-muted">--</small>
+            </p>
+          </h4>
+
+          <form>
+            <div class="form-group" id="sandbox-container">
+              <input type="text" class="form-control form-control-sm inputData" placeholder="DD/MM/AAAA"
+                id="inputDataUmidade">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"
+              onclick="criaGrafUmidadePorData()"> Carregar histórico</button>
+
+          </form>
+
+        </div>
+      </div>
+      <!--card-->
+
+
+    </div>
+    <!--row-fluid-1-->
+
+
+    <div class="row">
+      <br>
+      <!--Luz-->
+      <div class="card col-sm-12 col-md-4 col-lg-4 col-xl-4 shadow-sm p-3 mb-5 bg-white rounded ">
+        <div class="card-body">
+          <header>
+            <h1><span><i class="material-icons statistic glyphicon glyphicon-tasks" id="currentLuz"></i></span></h1>
+          </header>
+          <h4><span>Luz:</span>
+            <p><small id="luzData" class="text-muted">--</small>
+            </p>
+          </h4>
+          <form>
+            <div class="form-group" id="sandbox-container">
+              <input type="text" class="form-control form-control-sm inputData" placeholder="DD/MM/AAAA"
+                id="inputDataLuz">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"
+              onclick="criaGrafLuzPorData()"> Carregar histórico</button>
+          </form>
+        </div>
+      </div>
+      <!--card-->
+
+      <!--Presença-->
+      <div class="card col-sm-12 col-md-4 col-lg-4 col-xl-4 shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <header>
+            <h1><span><i class="material-icons statistic glyphicon glyphicon-tasks" id="currentPresenca">--</i></span>
+            </h1>
+          </header>
+          <h4><span>Presença:</span>
+            <p><small id="presData" class="text-muted">--</small>
+            </p>
+          </h4>
+          <form>
+            <div class="form-group" id="sandbox-container">
+              <input type="text" class="form-control form-control-sm inputData" placeholder="DD/MM/AAAA"
+                id="inputDataPresenca">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"
+              onclick="criaGrafPresencaPorData()"> Carregar histórico</button>
+          </form>
+        </div>
+      </div>
+      <!--card-->
+
+      <!--Fumaça-->
+      <div class="card col-sm-12 col-md-4 col-lg-4 col-xl-4 shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <header>
+            <h1><span><i class="material-icons statistic glyphicon glyphicon-tasks" id="currentFumaca"></i></span></h1>
+          </header>
+          <h4><span>Fumaça:</span>
+            <p><small id="fumaData" class="text-muted">--</small>
+            </p>
+          </h4>
+          <form>
+            <div class="form-group" id="sandbox-container">
+              <input type="text" class="form-control form-control-sm inputData" placeholder="DD/MM/AAAA"
+                id="inputDataFumaca">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"
+              onclick="criaGrafFumacaPorData()"> Carregar histórico</button>
+          </form>
+        </div>
+      </div>
+      <!--card-->
+
+
+
+    </div>
+    <!--row-fluid-->
+    <br>
+    <div class="row justify-content-md-center">
+
+      <h1 id="lsn">
+        LSN - 13</h1>
+    </div>
+    <br>
+
+    <div class="row justify-content-md-center">
+      <br>
+      <!--Temperatura-->
+      <div class="card col-sm-12 col-md-5 col-lg-5 col-xl-5 shadow-sm p-3 mb-5 bg-white rounded ">
+        <div class="card-body">
+          <header>
+            <h1><span id="currentTemp2">--</span></h1>
+          </header>
+          <h4><span>Temperatura em:</span>
+            <p><small id="tempData2" class="text-muted">--</small>
+            </p>
+          </h4>
+          <form class="form">
+            <div class="form-group" id="sandbox-container">
+              <input type="text" class="form-control form-control-sm" placeholder="DD/MM/AAAA"
+                id="inputDataTemperatura2">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"
+              onclick='criaGrafTemperaturaPorDataLsn()'> Carregar histórico</button>
+          </form>
+
+        </div>
+      </div>
+      <!--card-->
+
+
+      <!-- Modal -->
+
+      <div class="modal fade bd-example-modal-xl" id="modal" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Histórico</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <canvas id="line-chart"></canvas>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Umidade-->
+      <div class="card col-sm-12 col-md-5 col-lg-5 col-xl-5 shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <header>
+            <h1><span id="currentUmid2">--</span></h1>
+          </header>
+          <h4><span>Umidade em:</span>
+            <p><small id="umidData2" class="text-muted">--</small>
+            </p>
+          </h4>
+
+          <form>
+            <div class="form-group" id="sandbox-container">
+              <input type="text" class="form-control form-control-sm inputData" placeholder="DD/MM/AAAA"
+                id="inputDataUmidade2">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"
+              onclick="criaGrafUmidadePorDataLsn()"> Carregar histórico</button>
+
+          </form>
+
+        </div>
+      </div>
+      <!--card-->
+
+
+    </div>
+    <!--row-fluid-1-->
+  </div>
+  </div>
+  <!--container-fluid-->
+
+
+  <!-- Footer -->
+  <footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019:
+      <a target="_blank" href="https://www.fct.unesp.br/#!/labsimnum"> LSN - Laboratório de Simulação Numérica</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+  <!-- JavaScript (Opcional) -->
+  <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+  <script src="_js/app.js"></script>
+  <script src="_js/app2.js"></script>
+  <script src="_js/app2-lsn.js"></script>
+  <script src="_js/init.js"></script>
+</body>
+
+</html>

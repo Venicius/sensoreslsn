@@ -1,0 +1,15 @@
+.centro{
+     padding: 20px;
+     align-self: auto;
+      }
+
+#cardTemperatura{
+  
+  background: linear-gradient(rgb(0, 204, 102),rgb(0, 204, 153))
+}
+
+#cardUmid{
+  
+  background: linear-gradient(rgb(0, 191, 255),rgb(0, 172, 230))
+}
+
