@@ -175,7 +175,7 @@
           responsive:true,
           title: {
         display: true,
-        text: "Umidade em: " + retornaDataUmidadeLsn()
+        text: "LSN: Umidade em: " + retornaDataUmidadeLsn()
       }
     }
   });

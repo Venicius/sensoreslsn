@@ -94,7 +94,7 @@
 
   //___________________________Umidade____________________
 
-  function retornaDataUmidadeLsn(){
+  function retornaDataUmidade(){
     var timestamp;
     var dia;
     var aux ;
@@ -115,9 +115,9 @@
         
   }
   
-  function retornaRegistrosUmidade2Lsn(){
+  function retornaRegistrosUmidade(){
      
-      var data = retornaDataUmidadeLsn();
+      var data = retornaDataUmidade();
        var registros = [];
     
       var query = firebase.database().ref("DadosSensores/Umidade/"+ data).orderByKey();
@@ -134,8 +134,8 @@
       return registros;
   }
         
-  function retornaHoraUmidade2Lsn(){
-      var data = retornaDataUmidadeLsn();
+  function retornaHoraUmidade(){
+      var data = retornaDataUmidade();
       var horarios = [];
       var query = firebase.database().ref("DadosSensores/Umidade/"+ data).orderByKey();
       query.once("value")
@@ -163,9 +163,9 @@
   mChart = new Chart(document.getElementById("line-chart"), {
     type: 'line',
     data: {
-      labels: retornaHoraUmidade2Lsn(),
+      labels: retornaHoraUmidade(),
       datasets: [{ 
-          data: retornaRegistrosUmidade2Lsn(),
+          data: retornaRegistrosUmidade(),
           label: '%',
           borderColor: "#3e95cd",
           fill: false
@@ -176,7 +176,7 @@
           responsive:true,
           title: {
         display: true,
-        text: "Umidade em: " + retornaDataUmidadeLsn()
+        text: "Umidade em: " + retornaDataUmidade()
       }
     }
   });
